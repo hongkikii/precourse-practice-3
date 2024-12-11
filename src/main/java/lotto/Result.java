@@ -66,7 +66,6 @@ public class Result {
 
     public String getReturnRate() {
         double returnRate = ((double) getProfitAmount() / price.get()) * 100;
-        System.out.println(returnRate);
         return String.format("%.1f", returnRate);
     }
 
