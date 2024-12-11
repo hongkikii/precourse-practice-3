@@ -31,7 +31,7 @@ public class Result {
 
         for (Lotto issuedLotto : issuedLotto.get()) {
             List<Integer> issuedLottoNumbers = issuedLotto.getSorted();
-            List<Integer> winningNumbers = winningNumber.getWinningNumber();
+            List<Integer> winningNumbers = winningNumber.get();
             List<Integer> matchNumbers = issuedLottoNumbers.stream()
                     .filter(o -> winningNumbers.stream()
                             .anyMatch(Predicate.isEqual(o)))

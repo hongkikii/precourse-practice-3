@@ -17,7 +17,7 @@ public class WinningNumber {
         this.winningNumber = new Lotto(numbers);
     }
 
-    public List<Integer> getWinningNumber() {
+    public List<Integer> get() {
         return Collections.unmodifiableList(winningNumber.getSorted());
     }
 
@@ -37,7 +37,7 @@ public class WinningNumber {
         }
         String[] splitWinningNumberCandidate = split(winningNumberCandidate);
         for (String numberCandidate : splitWinningNumberCandidate) {
-            parse(numberCandidate);
+            checkValid(numberCandidate);
         }
     }
 
@@ -53,7 +53,7 @@ public class WinningNumber {
         return result;
     }
 
-    private void parse(String numberCandidate) {
+    private void checkValid(String numberCandidate) {
         try {
             int number = Integer.parseInt(numberCandidate);
             if (number < 1 || number > 45) {

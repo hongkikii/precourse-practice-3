@@ -6,16 +6,12 @@ public class Price {
     private final int price;
 
     public Price(String priceCandidate) {
+        validate(priceCandidate);
         this.price = parse(priceCandidate);
     }
 
     public int get() {
         return this.price;
-    }
-
-    private int parse(String priceCandidate) {
-        validate(priceCandidate);
-        return Integer.parseInt(priceCandidate);
     }
 
     private void validate(String priceCandidate) {
@@ -31,5 +27,9 @@ public class Price {
         catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_HEADER + "구입 금액의 형식이 올바르지 않습니다.");
         }
+    }
+
+    private int parse(String priceCandidate) {
+        return Integer.parseInt(priceCandidate);
     }
 }
