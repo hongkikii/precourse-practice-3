@@ -53,7 +53,7 @@ public class Result {
         int matchingCount = matchNumbers.size();
         Prize prize = Prize.getBy(matchingCount);
         if(prize == Prize.THIRD) {
-            if (matchNumbers.contains(bonusNumber.get())) {
+            if (issuedLottoNumbers.contains(bonusNumber.get())) {
                 prize = Prize.SECOND;
             }
         }
