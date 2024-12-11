@@ -17,4 +17,9 @@ public class View {
             System.out.println(lotto.getSortedNumbers());
         }
     }
+
+    public void showWinningNumberRequest() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
