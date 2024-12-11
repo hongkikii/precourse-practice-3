@@ -62,15 +62,16 @@ public class Result {
         return Collections.unmodifiableMap(result);
     }
 
-//    public int getPrizeCount(Prize prize) {
-//        return result.get(prize);
-//    }
-//
-//    public double getReturnRate(int purchasePrice) {
-//
-//    }
-//
-//    private void getProfitAmount() {
-//
-//    }
+    public String getReturnRate(int purchasePrice) {
+        double returnRate = (double) (getProfitAmount() / purchasePrice) / 100;
+        return String.format("%.1f", returnRate);
+    }
+
+    private long getProfitAmount() {
+        long profitAmount = 0;
+        for(Prize prize : result.keySet()) {
+            profitAmount += ((long) prize.getPrice() * result.get(prize));
+        }
+        return profitAmount;
+    }
 }

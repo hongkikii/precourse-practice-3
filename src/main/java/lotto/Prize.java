@@ -24,4 +24,8 @@ public enum Prize {
     public String getResultInfo() {
         return this.resultInfo;
     }
+
+    public int getPrice() {
+        return this.price;
+    }
 }
