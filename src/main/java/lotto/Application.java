@@ -39,5 +39,7 @@ public class Application {
             }
             break;
         }
+
+        view.showBonusNumberRequest();
     }
 }
