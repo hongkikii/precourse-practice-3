@@ -8,11 +8,13 @@ public class Application {
         View view = new View();
         InputParser inputParser = new InputParser();
 
+        // TODO: 빈 문자열일 경우 예외 처리하는지 검증
         Integer price = null;
         while (true) {
             view.showPriceRequest();
             String priceCandidate = Console.readLine();
             try {
+                // TODO: Price 클래스로 분리
                 price = inputParser.parse(priceCandidate);
             }
             catch (IllegalArgumentException e) {
@@ -25,6 +27,17 @@ public class Application {
         view.show(issuedLotto.getCount());
         view.show(issuedLotto.getIssuedLottos());
 
-        view.showWinningNumberRequest();
+        WinningNumber winningNumber = null;
+        while (true) {
+            view.showWinningNumberRequest();
+            String winningNumberCandidate = Console.readLine();
+            try {
+                winningNumber = new WinningNumber(winningNumberCandidate);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
     }
 }

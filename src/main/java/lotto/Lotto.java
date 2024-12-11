@@ -19,6 +19,7 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ERROR_HEADER + "로또 번호가 중복되어서는 안 됩니다.");
         }
+        // TODO: 로또 번호 범위 예외 처리
     }
 
     // TODO: 추가 기능 구현
