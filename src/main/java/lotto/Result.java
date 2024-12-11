@@ -57,6 +57,7 @@ public class Result {
                 prize = Prize.SECOND;
             }
         }
+        if(prize == null) return;
         result.put(prize, result.get(prize) + 1);
     }
 
