@@ -10,6 +10,10 @@ public class BonusNumber {
         this.bonusNumber = parse(bonusNumberCandidate);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(String bonusNumberCandidate, WinningNumber winningNumber) {
         try {
             int number = parse(bonusNumberCandidate);

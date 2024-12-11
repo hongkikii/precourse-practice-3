@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Constants.ERROR_HEADER;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,10 @@ public class WinningNumber {
         String[] splitWinningNumberCandidate = split(winningNumberCandidate);
         List<Integer> numbers = parse(splitWinningNumberCandidate);
         this.winningNumber = new Lotto(numbers);
+    }
+
+    public List<Integer> getWinningNumber() {
+        return Collections.unmodifiableList(winningNumber.getSortedNumbers());
     }
 
     public boolean isContained(int number) {

@@ -54,5 +54,7 @@ public class Application {
             }
             break;
         }
+
+        Result result = new Result(issuedLotto, winningNumber, bonusNumber);
     }
 }
