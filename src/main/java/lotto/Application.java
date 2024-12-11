@@ -58,5 +58,6 @@ public class Application {
         Result result = new Result(issuedLotto, winningNumber, bonusNumber);
         view.showResultHeader();
         view.show(result.getResult());
+        view.show(result.getReturnRate(price));
     }
 }

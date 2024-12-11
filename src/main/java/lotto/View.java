@@ -40,4 +40,8 @@ public class View {
             System.out.println(prize.getResultInfo() + result.get(prize) + "개");
         }
     }
+
+    public void show(String returnRate) {
+        System.out.print("총 수익률은 " + returnRate + "%입니다.");
+    }
 }
