@@ -10,7 +10,7 @@ public class BonusNumber {
         this.bonusNumber = parse(bonusNumberCandidate);
     }
 
-    public int getBonusNumber() {
+    public int get() {
         return bonusNumber;
     }
 

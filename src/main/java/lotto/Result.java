@@ -10,12 +10,14 @@ public class Result {
     private final IssuedLotto issuedLotto;
     private final WinningNumber winningNumber;
     private final BonusNumber bonusNumber;
+    private final Price price;
     private final Map<Prize, Integer> result;
 
-    public Result(IssuedLotto issuedLotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public Result(IssuedLotto issuedLotto, WinningNumber winningNumber, BonusNumber bonusNumber, Price price) {
         this.issuedLotto = issuedLotto;
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
+        this.price = price;
         this.result = new LinkedHashMap<>();
         initialize();
     }
@@ -27,8 +29,8 @@ public class Result {
         result.put(Prize.SECOND, 0);
         result.put(Prize.FIRST, 0);
 
-        for (Lotto issuedLotto : issuedLotto.getIssuedLottos()) {
-            List<Integer> issuedLottoNumbers = issuedLotto.getSortedNumbers();
+        for (Lotto issuedLotto : issuedLotto.get()) {
+            List<Integer> issuedLottoNumbers = issuedLotto.getSorted();
             List<Integer> winningNumbers = winningNumber.getWinningNumber();
             List<Integer> matchNumbers = issuedLottoNumbers.stream()
                     .filter(o -> winningNumbers.stream()
@@ -40,7 +42,7 @@ public class Result {
                 break;
             }
             if (matchNumbers.size() == Prize.SECOND.getCount()) {
-                if(issuedLottoNumbers.contains(bonusNumber.getBonusNumber())) {
+                if(issuedLottoNumbers.contains(bonusNumber.get())) {
                     result.put(Prize.SECOND, result.get(Prize.SECOND) + 1);
                     break;
                 }
@@ -58,11 +60,11 @@ public class Result {
         }
     }
 
-    public Map<Prize, Integer> getResult() {
+    public Map<Prize, Integer> get() {
         return Collections.unmodifiableMap(result);
     }
 
-    public String getReturnRate(Price price) {
+    public String getReturnRate() {
         double returnRate = ((double) getProfitAmount() / price.get()) * 100;
         System.out.println(returnRate);
         return String.format("%.1f", returnRate);

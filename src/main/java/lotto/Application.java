@@ -3,10 +3,22 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+    private static View view = new View();
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        View view = new View();
+        Price price = getPrice();
+        IssuedLotto issuedLotto = new IssuedLotto(price);
+        view.show(issuedLotto);
 
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
+
+        Result result = new Result(issuedLotto, winningNumber, bonusNumber, price);
+        view.show(result);
+    }
+
+    private static Price getPrice() {
         Price price = null;
         while (true) {
             view.showPriceRequest();
@@ -20,10 +32,10 @@ public class Application {
             }
             break;
         }
-        IssuedLotto issuedLotto = new IssuedLotto(price);
-        view.show(issuedLotto.getCount());
-        view.show(issuedLotto.getIssuedLottos());
+        return price;
+    }
 
+    private static WinningNumber getWinningNumber() {
         WinningNumber winningNumber = null;
         while (true) {
             view.showWinningNumberRequest();
@@ -37,7 +49,10 @@ public class Application {
             }
             break;
         }
+        return winningNumber;
+    }
 
+    private static BonusNumber getBonusNumber(WinningNumber winningNumber) {
         BonusNumber bonusNumber = null;
         while (true) {
             view.showBonusNumberRequest();
@@ -51,10 +66,6 @@ public class Application {
             }
             break;
         }
-
-        Result result = new Result(issuedLotto, winningNumber, bonusNumber);
-        view.showResultHeader();
-        view.show(result.getResult());
-        view.show(result.getReturnRate(price));
+        return bonusNumber;
     }
 }

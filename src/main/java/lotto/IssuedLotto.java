@@ -18,7 +18,7 @@ public class IssuedLotto {
         }
     }
 
-    public List<Lotto> getIssuedLottos() {
+    public List<Lotto> get() {
         return Collections.unmodifiableList(issuedLottos);
     }
 

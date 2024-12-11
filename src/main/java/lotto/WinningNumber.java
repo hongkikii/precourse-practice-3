@@ -18,11 +18,11 @@ public class WinningNumber {
     }
 
     public List<Integer> getWinningNumber() {
-        return Collections.unmodifiableList(winningNumber.getSortedNumbers());
+        return Collections.unmodifiableList(winningNumber.getSorted());
     }
 
     public boolean isContained(int number) {
-        return winningNumber.getSortedNumbers().contains(number);
+        return winningNumber.getSorted().contains(number);
     }
 
     private void validate(String winningNumberCandidate) {
