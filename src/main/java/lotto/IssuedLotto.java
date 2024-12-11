@@ -13,10 +13,13 @@ public class IssuedLotto {
         int count = price / 1000;
         for (int i = 1; i <= count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             issuedLottos.add(lotto);
         }
+    }
+
+    public List<Lotto> getIssuedLottos() {
+        return Collections.unmodifiableList(issuedLottos);
     }
 
     public int getCount() {

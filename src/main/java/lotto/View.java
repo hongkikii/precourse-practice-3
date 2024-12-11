@@ -1,6 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class View {
     public void showPriceRequest() {
@@ -10,5 +10,11 @@ public class View {
     public void show(int issuedLottoCount) {
         System.out.println();
         System.out.println(issuedLottoCount + "개를 구매했습니다.");
+    }
+
+    public void show(List<Lotto> issuedLottos) {
+        for(Lotto lotto : issuedLottos) {
+            System.out.println(lotto.getSortedNumbers());
+        }
     }
 }
