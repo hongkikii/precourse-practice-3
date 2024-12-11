@@ -33,13 +33,26 @@ public class Application {
             String winningNumberCandidate = Console.readLine();
             try {
                 winningNumber = new WinningNumber(winningNumberCandidate);
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
             }
             break;
         }
 
-        view.showBonusNumberRequest();
+        BonusNumber bonusNumber = null;
+        while (true) {
+            view.showBonusNumberRequest();
+            String bonusNumberCandidate = Console.readLine();
+            try {
+                bonusNumber = new BonusNumber(bonusNumberCandidate, winningNumber);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
     }
 }

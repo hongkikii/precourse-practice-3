@@ -16,6 +16,10 @@ public class WinningNumber {
         this.winningNumber = new Lotto(numbers);
     }
 
+    public boolean isContained(int number) {
+        return winningNumber.getSortedNumbers().contains(number);
+    }
+
     private void validate(String winningNumberCandidate) {
         if (Pattern.matches("[0-9,]", winningNumberCandidate)) {
             throw new IllegalArgumentException(ERROR_HEADER + "당첨 번호는 숫자와 쉼표만 입력되어야 합니다.");
