@@ -20,4 +20,8 @@ public enum Prize {
     public int getCount() {
         return this.count;
     }
+
+    public String getResultInfo() {
+        return this.resultInfo;
+    }
 }

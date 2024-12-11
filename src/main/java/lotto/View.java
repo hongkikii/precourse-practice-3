@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class View {
     public void showPriceRequest() {
@@ -32,5 +33,11 @@ public class View {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    public void show(Map<Prize, Integer> result) {
+        for(Prize prize : result.keySet()) {
+            System.out.println(prize.getResultInfo() + result.get(prize) + "개");
+        }
     }
 }

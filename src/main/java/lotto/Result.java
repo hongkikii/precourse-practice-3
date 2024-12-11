@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +21,11 @@ public class Result {
     }
 
     private void initialize() {
-        result.put(Prize.FIRST, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.FOURTH, 0);
         result.put(Prize.FIFTH, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.FIRST, 0);
 
         for (Lotto issuedLotto : issuedLotto.getIssuedLottos()) {
             List<Integer> issuedLottoNumbers = issuedLotto.getSortedNumbers();
@@ -55,6 +56,10 @@ public class Result {
                 break;
             }
         }
+    }
+
+    public Map<Prize, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 
 //    public int getPrizeCount(Prize prize) {
