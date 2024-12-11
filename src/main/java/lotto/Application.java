@@ -6,16 +6,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         View view = new View();
-        InputParser inputParser = new InputParser();
 
-        // TODO: 빈 문자열일 경우 예외 처리하는지 검증
-        Integer price = null;
+        Price price = null;
         while (true) {
             view.showPriceRequest();
             String priceCandidate = Console.readLine();
             try {
-                // TODO: Price 클래스로 분리
-                price = inputParser.parse(priceCandidate);
+                price = new Price(priceCandidate);
             }
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

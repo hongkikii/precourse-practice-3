@@ -8,9 +8,9 @@ import java.util.List;
 public class IssuedLotto {
     private final List<Lotto> issuedLottos;
 
-    public IssuedLotto(int price) {
+    public IssuedLotto(Price price) {
         issuedLottos = new ArrayList<>();
-        int count = price / 1000;
+        int count = price.get() / 1000;
         for (int i = 1; i <= count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);

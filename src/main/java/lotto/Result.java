@@ -62,8 +62,8 @@ public class Result {
         return Collections.unmodifiableMap(result);
     }
 
-    public String getReturnRate(int purchasePrice) {
-        double returnRate = ((double) getProfitAmount() / purchasePrice) * 100;
+    public String getReturnRate(Price price) {
+        double returnRate = ((double) getProfitAmount() / price.get()) * 100;
         System.out.println(returnRate);
         return String.format("%.1f", returnRate);
     }

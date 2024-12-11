@@ -2,8 +2,18 @@ package lotto;
 
 import static lotto.Constants.ERROR_HEADER;
 
-public class InputParser {
-    public int parse(String priceCandidate) {
+public class Price {
+    private final int price;
+
+    public Price(String priceCandidate) {
+        this.price = parse(priceCandidate);
+    }
+
+    public int get() {
+        return this.price;
+    }
+
+    private int parse(String priceCandidate) {
         validate(priceCandidate);
         return Integer.parseInt(priceCandidate);
     }
