@@ -17,8 +17,20 @@ public enum Prize {
         this.count = count;
     }
 
-    public int getCount() {
-        return this.count;
+    public static Prize getBy(int count) {
+        if(count == FIRST.count) {
+            return FIRST;
+        }
+        if(count == THIRD.count) {
+            return THIRD;
+        }
+        if(count == FOURTH.count) {
+            return FOURTH;
+        }
+        if(count == FIFTH.count) {
+            return FIFTH;
+        }
+        return null;
     }
 
     public String getResultInfo() {
@@ -28,4 +40,5 @@ public enum Prize {
     public int getPrice() {
         return this.price;
     }
+
 }

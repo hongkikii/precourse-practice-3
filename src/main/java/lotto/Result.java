@@ -22,44 +22,6 @@ public class Result {
         initialize();
     }
 
-    private void initialize() {
-        result.put(Prize.FIFTH, 0);
-        result.put(Prize.FOURTH, 0);
-        result.put(Prize.THIRD, 0);
-        result.put(Prize.SECOND, 0);
-        result.put(Prize.FIRST, 0);
-
-        for (Lotto issuedLotto : issuedLotto.get()) {
-            List<Integer> issuedLottoNumbers = issuedLotto.getSorted();
-            List<Integer> winningNumbers = winningNumber.get();
-            List<Integer> matchNumbers = issuedLottoNumbers.stream()
-                    .filter(o -> winningNumbers.stream()
-                            .anyMatch(Predicate.isEqual(o)))
-                            .toList();
-
-            if (matchNumbers.size() == Prize.FIRST.getCount()) {
-                result.put(Prize.FIRST, result.get(Prize.FIRST) + 1);
-                break;
-            }
-            if (matchNumbers.size() == Prize.SECOND.getCount()) {
-                if(issuedLottoNumbers.contains(bonusNumber.get())) {
-                    result.put(Prize.SECOND, result.get(Prize.SECOND) + 1);
-                    break;
-                }
-                result.put(Prize.THIRD, result.get(Prize.THIRD) + 1);
-                break;
-            }
-            if (matchNumbers.size() == Prize.FOURTH.getCount()) {
-                result.put(Prize.FOURTH, result.get(Prize.FOURTH) + 1);
-                break;
-            }
-            if (matchNumbers.size() == Prize.FIFTH.getCount()) {
-                result.put(Prize.FIFTH, result.get(Prize.FIFTH) + 1);
-                break;
-            }
-        }
-    }
-
     public Map<Prize, Integer> get() {
         return Collections.unmodifiableMap(result);
     }
@@ -67,6 +29,43 @@ public class Result {
     public String getReturnRate() {
         double returnRate = ((double) getProfitAmount() / price.get()) * 100;
         return String.format("%.1f", returnRate);
+    }
+
+    private void initialize() {
+        setBaseValue();
+        for (Lotto issuedLotto : issuedLotto.get()) {
+            setBy(issuedLotto);
+        }
+    }
+
+    private void setBaseValue() {
+        result.put(Prize.FIFTH, 0);
+        result.put(Prize.FOURTH, 0);
+        result.put(Prize.THIRD, 0);
+        result.put(Prize.SECOND, 0);
+        result.put(Prize.FIRST, 0);
+    }
+
+    private void setBy(Lotto issuedLotto) {
+        List<Integer> issuedLottoNumbers = issuedLotto.getSorted();
+        List<Integer> matchNumbers = getMatchNumbersWith(issuedLottoNumbers);
+
+        int matchingCount = matchNumbers.size();
+        Prize prize = Prize.getBy(matchingCount);
+        if(prize == Prize.THIRD) {
+            if (matchNumbers.contains(bonusNumber.get())) {
+                prize = Prize.SECOND;
+            }
+        }
+        result.put(prize, result.get(prize) + 1);
+    }
+
+    private List<Integer> getMatchNumbersWith(List<Integer> issuedLottoNumbers) {
+        List<Integer> winningNumbers = winningNumber.get();
+        return issuedLottoNumbers.stream()
+                .filter(o -> winningNumbers.stream()
+                        .anyMatch(Predicate.isEqual(o)))
+                .toList();
     }
 
     private long getProfitAmount() {
