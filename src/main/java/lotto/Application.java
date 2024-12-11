@@ -21,8 +21,7 @@ public class Application {
             }
             break;
         }
-
         IssuedLotto issuedLotto = new IssuedLotto(price);
-
+        view.show(issuedLotto.getCount());
     }
 }

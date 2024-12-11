@@ -18,4 +18,8 @@ public class IssuedLotto {
             issuedLottos.add(lotto);
         }
     }
+
+    public int getCount() {
+        return issuedLottos.size();
+    }
 }
